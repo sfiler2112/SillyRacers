@@ -36,7 +36,7 @@ public class Racer {
         return name;
     }
 
-    public void beginRacing(Course raceCourse){
+    public void beginRacing(Course raceCourse, Race race){
         distanceCovered = 0.0;
         wholeSecondCount = 0;
         /*
@@ -52,6 +52,7 @@ public class Racer {
         overshot = distanceCovered - raceCourse.getTotalLength();
         System.out.println(name + " finished.\n\tOvershot/Whole second count: " + overshot + "/" + wholeSecondCount);
         calculateTrueFinishTime();
+        race.addFinishingRacer(this);
     }
 
     public void calculateTrueFinishTime(){

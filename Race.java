@@ -6,8 +6,9 @@
 import java.util.ArrayList;
 
 public class Race {
-    private ArrayList<Racer> racers  = new ArrayList<>();
+    private ArrayList<Racer> racers;
     private Course raceCourse;
+    private ArrayList<Racer> topThreeFinishers = new ArrayList<>();
 
     public Race(ArrayList<Racer> racers, Course raceCourse){
         this.racers = racers;
@@ -20,7 +21,13 @@ public class Race {
 
     public void startRace(){
         for(Racer currentRacer: racers){
-            currentRacer.beginRacing(raceCourse);
+            currentRacer.beginRacing(raceCourse, this);
+        }
+    }
+
+    public void addFinishingRacer(Racer racer){
+        if(topThreeFinishers.size()<3){
+            topThreeFinishers.add(racer);
         }
     }
 
@@ -28,6 +35,12 @@ public class Race {
         String results = "Race Results:";
         for(Racer currentRacer: racers){
             results = results + "\nRacer/Time: " + currentRacer.getName() + "/" + currentRacer.getTrueFinishTime();
+        }
+        int finisher = 1;
+        results = results + "\nTop Three finishers:";
+        for(Racer currentFinisher: topThreeFinishers){
+            results = results + "\n" + finisher + " place Racer/True finish time: " + currentFinisher.getName() + "/" + currentFinisher.getTrueFinishTime();
+            finisher++;
         }
         return results;
     }
