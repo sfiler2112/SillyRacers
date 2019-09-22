@@ -5,8 +5,10 @@
  */
 
 import java.util.ArrayList;
+import javax.swing.*;
 
-public class SillyRacersMain {
+public class SillyRacersMain
+{
     private Course raceCourse;
     private ArrayList<Racer> racers = new ArrayList<>();
     private Race sillyRace;
@@ -25,7 +27,7 @@ public class SillyRacersMain {
     }
 
     public void selectCourse(){
-        raceCourse = new Course(150, 3);
+        raceCourse = new Course("Daytona", 150, 3);
     }
 
     public void selectRacers(){

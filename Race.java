@@ -4,11 +4,14 @@
  * Purpose: Composed of a list of racers and a course, keeps track of the racers as they progress and provides data on the finishing order as the course is completed.
  */
 import java.util.ArrayList;
+import java.util.concurrent.locks.*;
 
 public class Race {
     private ArrayList<Racer> racers;
     private Course raceCourse;
-    private ArrayList<Racer> topThreeFinishers = new ArrayList<>();
+    private ArrayList<Racer> topThreeRacers = new ArrayList<>();
+    private ReentrantLock raceLock = new ReentrantLock();
+    private int leaderLapNum;
 
     public Race(ArrayList<Racer> racers, Course raceCourse){
         this.racers = racers;
@@ -18,10 +21,15 @@ public class Race {
             System.out.println("\t"+currentRacer.getName());
         }
     }
+    
+    public void updateRacerPositions(Racer argRacer){
+        if(argRacer.getLapNumber() > leaderLapNum)
+    }
 
     public void startRace(){
+        leaderLapNum = 0;
         for(Racer currentRacer: racers){
-            currentRacer.beginRacing(raceCourse, this);
+            currentRacer.prepareToRace(raceCourse, this);
         }
     }
 

@@ -5,18 +5,28 @@
  *          Possibility to expand later with features like straightaways and curves that modify a racer's speed in that location.
  */
 public class Course {
-    private int lapLength;
+    private double lapLength;
     private int laps;
-    private int totalLength;
+    private double totalLength;
+    private String name;
 
-    public Course(int lapLength, int laps){
+    public Course(String name, int lapLength, int laps){
         this.lapLength = lapLength;
         this.laps = laps;
+        this.name = name;
         System.out.println("Course created! Length/Laps: " + lapLength + "/" + laps );
         this.totalLength = lapLength * laps;
     }
 
-    public int getTotalLength(){
+    public double getTotalLength(){
         return totalLength;
+    }
+    
+    public double getLapLength(){
+        return lapLength;
+    }
+    
+    public String getName(){
+        return name;
     }
 }
